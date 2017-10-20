@@ -69,41 +69,6 @@ fprintf(stderr, "-------------------\n");   \
 /* 🐖 ***************************** 🐖 强弱引用 🐖 *****************************  🐖 */
 
 
-#pragma mark - 👀 尺寸 👀 💤
-/* 🐖 ***************************** 🐖 尺寸 🐖 *****************************  🐖 */
-/// 状态栏高度
-#define STARTUS_BAR_HEIGHT      20
-
-/// navBar方式
-#define NAVIGATION_BAR_HEIGHT   44
-
-/// tabBar高度
-#define TAB_BAR_HEIGHT          49
-
-/// 状态栏 和 navBar 的高度
-#define STATUS_AND_NAVIGATION_BAR_HEIGHT    (STARTUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT)
-
-/// 屏幕的宽高
-#define SCREEN_RECT   [UIScreen mainScreen].bounds
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
-
-/// 根据给定的宽度（基于 ipone6），获取实际的宽度
-static inline CGFloat FetchCurrentWidthFromIphone6Width(CGFloat width)
-{
-    return SCREEN_WIDTH / 375.0 * width;
-}
-
-/// 根据给定的高度（基于 ipone6），获取实际的高度
-static inline CGFloat FetchCurrentHeightFromIphone6Height(CGFloat height)
-{
-    return SCREEN_HEIGHT / 667.0 * height;
-}
-
-/* 🐖 ***************************** 🐖 尺寸 🐖 *****************************  🐖 */
-
-
-
 #pragma mark - 👀 设备型号 👀 💤
 /* 🐖 ***************************** 🐖 设备型号 🐖 *****************************  🐖 */
 
@@ -115,6 +80,8 @@ static inline CGFloat FetchCurrentHeightFromIphone6Height(CGFloat height)
 #define IS_IPHONE6              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
 
 #define IS_IPHONE6P              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IS_IPHONEX              ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 /// 判断是否是 iPhone
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -140,6 +107,7 @@ static inline CGFloat FetchCurrentHeightFromIphone6Height(CGFloat height)
 #define iOS8_OR_LATER   (IS_EQUAL_OR_LATER_IOS(8.0))
 #define iOS9_OR_LATER   (IS_EQUAL_OR_LATER_IOS(9.0))
 #define iOS10_OR_LATER  (IS_EQUAL_OR_LATER_IOS(10.0))
+#define iOS11_OR_LATER  (IS_EQUAL_OR_LATER_IOS(11.0))
 /* 🐖 ***************************** 🐖 系统版本 🐖 *****************************  🐖 */
 
 
@@ -172,6 +140,43 @@ static inline CGFloat FetchCurrentHeightFromIphone6Height(CGFloat height)
 #define BeginIgnoreDeprecatedWarning BeginIgnoreClangWarning(-Wdeprecated-declarations)
 #define EndIgnoreDeprecatedWarning EndIgnoreClangWarning
 /* 🐖 ***************************** 🐖 忽略系统警告 🐖 *****************************  🐖 */
+
+
+
+#pragma mark - 👀 尺寸 👀 💤
+/* 🐖 ***************************** 🐖 尺寸 🐖 *****************************  🐖 */
+/// 状态栏高度
+#define STARTUS_BAR_HEIGHT       (IS_IPHONEX ? 44.f : 20.f)
+
+/// navBar方式
+#define NAVIGATION_BAR_HEIGHT    44
+
+/// tabBar高度
+#define TAB_BAR_HEIGHT           (IS_IPHONEX ? (49.f+34.f) : 49.f)
+
+/// 状态栏 和 navBar 的高度
+#define STATUS_AND_NAVIGATION_BAR_HEIGHT    (STARTUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT)
+
+/// 屏幕的宽高
+#define SCREEN_RECT   [UIScreen mainScreen].bounds
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
+
+/// 根据给定的宽度（基于 ipone6），获取实际的宽度
+static inline CGFloat FetchCurrentWidthFromIphone6Width(CGFloat width)
+{
+    return SCREEN_WIDTH / 375.0 * width;
+}
+
+/// 根据给定的高度（基于 ipone6），获取实际的高度
+static inline CGFloat FetchCurrentHeightFromIphone6Height(CGFloat height)
+{
+    return SCREEN_HEIGHT / 667.0 * height;
+}
+
+/* 🐖 ***************************** 🐖 尺寸 🐖 *****************************  🐖 */
+
+
 
 
 #pragma mark - 👀 其他 👀 💤
