@@ -14,7 +14,7 @@
 #ifndef UtilsMacros_h
 #define UtilsMacros_h
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 #pragma mark - 👀 日志输出 👀 💤
