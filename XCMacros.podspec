@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XCMacros"
-  s.version      = "1.0.5"
+  s.version      = "1.0.6"
   s.summary      = "XCMacros"
   s.description  = <<-DESC
 	XCMacros 开发常用宏文件

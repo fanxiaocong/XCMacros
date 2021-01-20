@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "XCMacros.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    DLog(@"---- %f ---- %f", STARTUS_BAR_HEIGHT, TAB_BAR_HEIGHT);
 }
 
 @end

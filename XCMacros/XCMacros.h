@@ -151,17 +151,25 @@ fprintf(stderr, "-------------------\n");   \
 
 #pragma mark - 👀 尺寸 👀 💤
 /* 🐖 ***************************** 🐖 尺寸 🐖 *****************************  🐖 */
+static inline CGFloat FetchBottomSafeArea() {
+    if (@available(iOS 11.0, *)) {
+        UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
+        return mainWindow.safeAreaInsets.bottom;
+    }
+    return 0;
+}
+
 /// 标记是否是 iphoneX 系列的手机
 #define IS_IPHONE_X_    (IS_IPHONE_X || IS_IPHONE_XR || IS_IPHONE_XS_MAX)
 
 /// 状态栏高度
-#define STARTUS_BAR_HEIGHT       (IS_IPHONE_X_ ? 44.f : 20.f)
+#define STARTUS_BAR_HEIGHT       ([[UIApplication sharedApplication] statusBarFrame].size.height)
 
 /// navBar方式
 #define NAVIGATION_BAR_HEIGHT    44
 
 /// tabBar高度
-#define TAB_BAR_HEIGHT           (IS_IPHONE_X_ ? (49.f+34.f) : 49.f)
+#define TAB_BAR_HEIGHT           ((FetchBottomSafeArea()) + 49.f)
 
 /// 状态栏 和 navBar 的高度
 #define STATUS_AND_NAVIGATION_BAR_HEIGHT    (STARTUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT)
